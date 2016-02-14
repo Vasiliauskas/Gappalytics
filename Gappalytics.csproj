@@ -57,8 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="appveyor.yml" />
-    <None Include="Gappalytics.nuspec" />
+    <None Include="nuget\Gappalytics.nuspec" />
+    <None Include="nuget\pack.ps1" />
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nuget\nuget.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

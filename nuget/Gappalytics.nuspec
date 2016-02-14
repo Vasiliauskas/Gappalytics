@@ -14,7 +14,7 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="Gappalytics/bin/Release/Gappalytics.dll" target="Build" />
-    <file src="Gappalytics/bin/Release/Gappalytics.XML" target="Build" />
+    <file src="Gappalytics/bin/Build/Gappalytics.dll" target="lib\net45" />
+    <file src="Gappalytics/bin/Build/Gappalytics.XML" target="lib\net45" />
   </files>
 </package>

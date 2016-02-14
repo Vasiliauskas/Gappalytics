@@ -1,5 +1,20 @@
 ﻿version: 1.0.{build}
-build_script:
-- cmd: git submodule update --init --recursive
+
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+build:
+  project: MarkdownLog.sln
+
 test: off
-deploy: off
+
+deploy:
+  provider: NuGet
+  api_key:
+    secure: HaSaek5Q1Z81NJh/tlPJdtTLvOq4xCwCS9DtzXXWXiBVdjNr8sdCIR/8qLe+UB6+
+  skip_symbols: true
+  artifact: /.*\.nupkg/
