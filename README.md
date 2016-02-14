@@ -14,9 +14,10 @@ There are two modes of tracking
 -- "Random number created on first visit"
 
 Usage:
+```c#
+var session = new AnalyticsSession("MYDOMAIN.COM", "UA-XXXXXXXX-X");* - non persistent
+var session = new AnalyticsSession("MYDOMAIN.COM", "UA-XXXXXXXX-X", someRandomNumber, visitCount, firstSessionTimestamp);* - persistent
 
-*var session = new AnalyticsSession("MYDOMAIN.COM", "UA-XXXXXXXX-X");* - non persistent
-*var session = new AnalyticsSession("MYDOMAIN.COM", "UA-XXXXXXXX-X", someRandomNumber, visitCount, firstSessionTimestamp);* - persistent
-
-*var page = _Session.CreatePageViewRequest("/Root/MyPage", "MyPage");
-page.Send();*
+var page = _Session.CreatePageViewRequest("/Root/MyPage", "MyPage");
+page.Send();
+```
