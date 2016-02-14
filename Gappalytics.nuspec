@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Gappalytics</id>
+    <title>Gappalytics</title>
+    <version>1.0</version>
+    <authors>Vidas Vasiliauskas</authors>
+    <description>Gappalytics is a library for google analytics based page tracking for any desktop or mobile application</description>
+    <language>en-US</language>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>Google analytics api for apps</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net45-client, net45" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

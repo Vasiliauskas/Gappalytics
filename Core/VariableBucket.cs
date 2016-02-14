@@ -1,19 +1,19 @@
-﻿namespace Appalytics.Core
+﻿namespace Gappalytics.Core
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class CustomVariableBag
+    internal class VariableBucket
     {
         internal readonly KeyValuePair<string, string>?[] _variables;
 
-        public CustomVariableBag()
+        public VariableBucket()
            : this(new KeyValuePair<string, string>?[5])
         {
         }
 
-        public CustomVariableBag(KeyValuePair<string, string>?[] variables)
+        public VariableBucket(KeyValuePair<string, string>?[] variables)
         {
             _variables = variables;
         }
@@ -26,7 +26,7 @@
             _variables[position - 1] = new KeyValuePair<string, string>(key, value);
         }
 
-        public CustomVariableBag MergeWith(CustomVariableBag other)
+        public VariableBucket MergeWith(VariableBucket other)
         {
             var variables = new KeyValuePair<string, string>?[5];
 
@@ -40,7 +40,7 @@
                 }
             }
 
-            return new CustomVariableBag(variables);
+            return new VariableBucket(variables);
         }
 
         public bool Any()

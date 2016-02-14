@@ -7,8 +7,8 @@
     <ProjectGuid>{96558322-66F6-4B07-B766-A26BB3CE3EA3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Appalytics</RootNamespace>
-    <AssemblyName>Appalytics</AssemblyName>
+    <RootNamespace>Gappalytics</RootNamespace>
+    <AssemblyName>Gappalytics</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,13 +39,14 @@
     <Compile Include="Core\AnalyticsClient.cs" />
     <Compile Include="Core\AnalyticsPageViewRequest.cs" />
     <Compile Include="Core\AnalyticsSession.cs" />
-    <Compile Include="Core\CustomVariableBag.cs" />
+    <Compile Include="Core\VariableBucket.cs" />
     <Compile Include="Core\IAnalyticsClient.cs" />
     <Compile Include="Core\IAnalyticsPageViewRequest.cs" />
     <Compile Include="Core\IAnalyticsSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Gappalytics.nuspec" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

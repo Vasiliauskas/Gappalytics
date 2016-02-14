@@ -1,18 +1,18 @@
-﻿namespace Appalytics.Core
+﻿namespace Gappalytics.Core
 {
     public class AnalyticsPageViewRequest : IAnalyticsPageViewRequest
     {
         private readonly IAnalyticsClient _analyticsClient;
         private readonly string _page;
         private readonly string _title;
-        private readonly CustomVariableBag _customVariables;
+        private readonly VariableBucket _customVariables;
 
         internal AnalyticsPageViewRequest(IAnalyticsClient analyticsClient, string page, string title)
         {
             _analyticsClient = analyticsClient;
             _page = page;
             _title = title;
-            _customVariables = new CustomVariableBag();
+            _customVariables = new VariableBucket();
         }
 
         public void Send()

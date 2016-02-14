@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appalytics", "Appalytics.csproj", "{96558322-66F6-4B07-B766-A26BB3CE3EA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gappalytics", "Gappalytics.csproj", "{96558322-66F6-4B07-B766-A26BB3CE3EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

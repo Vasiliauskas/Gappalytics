@@ -1,4 +1,4 @@
-﻿namespace Appalytics.Core
+﻿namespace Gappalytics.Core
 {
     internal interface IAnalyticsClient
     {
@@ -12,9 +12,9 @@
         /// <param name="page">ROOT/MyPage/MySubpage</param>
         /// <param name="title"></param>
         /// <param name="pageVariables"></param>
-        void SubmitPageView(string page, string title, CustomVariableBag pageVariables);
+        void SubmitPageView(string page, string title, VariableBucket pageVariables);
 
-        void SubmitEvent(string page, string title, string category, string action, string label, string value, CustomVariableBag pageVariables);
+        void SubmitEvent(string page, string title, string category, string action, string label, string value, VariableBucket pageVariables);
 
         void SetCustomVariable(int position, string key, string value);
 

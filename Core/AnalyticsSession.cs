@@ -1,4 +1,4 @@
-﻿namespace Appalytics.Core
+﻿namespace Gappalytics.Core
 {
     using System;
 

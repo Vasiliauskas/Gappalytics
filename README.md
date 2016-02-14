@@ -1,10 +1,10 @@
-﻿Appalytics README
+﻿Gappalytics README
 ==============
 
-Appalytics is a library for google analytics based page tracking for any desktop or mobile application
+Gappalytics is a library for google analytics based page tracking for any desktop or mobile application
 --------------
 
-To use Appalytics library, create an instance of AnalyticsSession every time you run your application.
+To use Gappalytics library, create an instance of AnalyticsSession every time you run your application.
 
 There are two modes of tracking
 - Non persistent - meaning that each time you create a new session it will be treated as a new user as well

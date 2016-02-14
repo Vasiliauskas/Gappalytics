@@ -1,4 +1,4 @@
-﻿namespace Appalytics.Core
+﻿namespace Gappalytics.Core
 {
     using System;
     using System.Net;
@@ -8,7 +8,7 @@
 
     internal class AnalyticsClient : IAnalyticsClient
     {
-        private readonly CustomVariableBag _sessionVariables;
+        private readonly VariableBucket _sessionVariables;
 
         private string _referralSource = "(direct)";
         private string _medium = "(none)";
@@ -35,7 +35,7 @@
         /// <param name="firstVisitTimeStamp">Timestamp for first session</param>
         public AnalyticsClient(string domain, string trackingCode, int randomNumber, int recentVisitCount, DateTime? firstVisitTimestamp)
         {
-            _sessionVariables = new CustomVariableBag();
+            _sessionVariables = new VariableBucket();
             Timestamp = ConvertToUnixTimestamp(DateTime.Now).ToString();
             Domain = domain;
             RandomNumber = randomNumber.ToString();
@@ -64,7 +64,7 @@
 
         public string CookieString { get { return GetCookieString(); } }
 
-        public void SubmitPageView(string page, string title, CustomVariableBag pageVariables)
+        public void SubmitPageView(string page, string title, VariableBucket pageVariables)
         {
             var client = CreateBrowser(page, title);
 
@@ -79,7 +79,7 @@
             });
         }
 
-        public void SubmitEvent(string page, string title, string category, string action, string label, string value, CustomVariableBag pageVariables)
+        public void SubmitEvent(string page, string title, string category, string action, string label, string value, VariableBucket pageVariables)
         {
             var client = CreateBrowser(page, title);
 
