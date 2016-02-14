@@ -1,5 +1,7 @@
 ﻿Gappalytics [![Build status](https://ci.appveyor.com/api/projects/status/06nsa81vvf7c9ymh?svg=true)](https://ci.appveyor.com/project/Vasiliauskas/gappalytics)
 --------------
+
+[![Join the chat at https://gitter.im/Vasiliauskas/Gappalytics](https://badges.gitter.im/Vasiliauskas/Gappalytics.svg)](https://gitter.im/Vasiliauskas/Gappalytics?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 _This is a library for google analytics based page tracking for any desktop or mobile application_
 
 
