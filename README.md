@@ -21,5 +21,6 @@ var session = new AnalyticsSession("DOMAIN.COM", "UA-XXXXXXXX-X", rndNumber, vis
 var page = _Session.CreatePageViewRequest("/Root/MyPage", "MyPage");
 page.Send();
 ```
-
+Travis build
+--------------
 [![Build Status](https://travis-ci.org/Vasiliauskas/Gappalytics.svg?branch=master)](https://travis-ci.org/Vasiliauskas/Gappalytics)
