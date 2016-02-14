@@ -1,6 +1,8 @@
 ﻿language: csharp
-
 solution: ./Gappalytics.sln
+
+mono:
+- latest
 
 script:
 - xbuild ./Gappalytics.sln
