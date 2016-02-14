@@ -26,4 +26,4 @@ deploy:
   api_key:
     secure: HaSaek5Q1Z81NJh/tlPJdtTLvOq4xCwCS9DtzXXWXiBVdjNr8sdCIR/8qLe+UB6+
   skip_symbols: true
-  artifact: /.*\.nupkg/
+  artifact: .\nuget\*.nupkg
