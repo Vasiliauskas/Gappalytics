@@ -9,7 +9,11 @@
     internal class AnalyticsClient : IAnalyticsClient
     {
         private readonly CustomVariableBag _sessionVariables;
-        private string _userAgent;
+
+        private string _referralSource = "(direct)";
+        private string _medium = "(none)";
+        private string _campaign = "(direct)";
+        private string _domain;
 
         /// <summary>
         /// Use for non persisted user session mode (Does not guarantee uniqueness of users)
@@ -41,76 +45,28 @@
             VisitCount = recentVisitCount;
         }
 
-        public string Domain { get; set; }
+        public string Domain
+        {
+            get { return _domain; }
+            set
+            {
+                _domain = value;
+                DomainHash = CalculateDomainHash(value);
+            }
+        }
         public string TrackingCode { get; set; }
         public string Timestamp { get; set; }
         public string FirstSessionTimestamp { get; set; }
-        public string ReferralSource = "(direct)";
-        public string Medium = "(none)";
-        public string Campaign = "(direct)";
         public string RandomNumber { get; set; }
         public int VisitCount { get; set; }
 
-        public int DomainHash
-        {
-            get
-            {
-                // converted from the google domain hash code listed here:
-                // http://www.google.com/support/forum/p/Google+Analytics/thread?tid=626b0e277aaedc3c&hl=en
-                int a = 1;
-                int c = 0;
-                int h;
-                char chrCharacter;
-                int intCharacter;
+        public int DomainHash { get; private set; }
 
-                a = 0;
-                for (h = Domain.Length - 1; h >= 0; h--)
-                {
-                    chrCharacter = char.Parse(Domain.Substring(h, 1));
-                    intCharacter = (int)chrCharacter;
-                    a = (a << 6 & 268435455) + intCharacter + (intCharacter << 14);
-                    c = a & 266338304;
-                    a = c != 0 ? a ^ c >> 21 : a;
-                }
-
-                return a;
-            }
-        }
-
-        public string CookieString
-        {
-            get
-            {
-                string utma = String.Format("{0}.{1}.{2}.{3}.{4}.{5}",
-                                            DomainHash,
-                                            RandomNumber,
-                                            FirstSessionTimestamp, // timestamp of first visit
-                                            Timestamp, // timestamp of previous (most recent visit)
-                                            Timestamp, // timestamp of current visit
-                                            VisitCount); // total visit count
-
-                //referral informaiton
-                string utmz = String.Format("{0}.{1}.{2}.{3}.utmcsr={4}|utmccn={5}|utmcmd={6}",
-                                            DomainHash,
-                                            Timestamp,
-                                            "1",
-                                            "1",
-                                            ReferralSource,
-                                            Campaign,
-                                            Medium);
-
-                string utmcc = Uri.EscapeDataString(String.Format("__utma={0};+__utmz={1};",
-                                                                  utma,
-                                                                  utmz
-                                                       ));
-
-                return (utmcc);
-            }
-        }
+        public string CookieString { get { return GetCookieString(); } }
 
         public void SubmitPageView(string page, string title, CustomVariableBag pageVariables)
         {
-            var client = BuildBaseWebClient(page, title);
+            var client = CreateBrowser(page, title);
 
             var variables = _sessionVariables.MergeWith(pageVariables);
 
@@ -125,7 +81,7 @@
 
         public void SubmitEvent(string page, string title, string category, string action, string label, string value, CustomVariableBag pageVariables)
         {
-            var client = BuildBaseWebClient(page, title);
+            var client = CreateBrowser(page, title);
 
             client.QueryString["utmt"] = "event";
             client.QueryString["utme"] = FormatUtme(category, action, label, value);
@@ -141,13 +97,26 @@
             });
         }
 
+
+        public void SetCustomVariable(int position, string key, string value)
+        {
+            _sessionVariables.Set(position, key, value);
+        }
+
+        public void ClearCustomVariable(int position)
+        {
+            _sessionVariables.Clear(position);
+        }
+
+        #region Private members
+
         private static string GetDefaultUserAgent()
         {
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             return string.Format("Appalytics v{0}.{1}", version.Major, version.Minor);
         }
 
-        private WebClient BuildBaseWebClient(string page, string title)
+        private WebClient CreateBrowser(string page, string title)
         {
             Random randomNumber = new Random();
             WebClient client = new WebClient();
@@ -199,14 +168,55 @@
             return (int)span.TotalSeconds;
         }
 
-        public void SetCustomVariable(int position, string key, string value)
+        private int CalculateDomainHash(string domain)
         {
-            _sessionVariables.Set(position, key, value);
+            int a = 1;
+            int c = 0;
+            int h;
+            char chrCharacter;
+            int intCharacter;
+
+            a = 0;
+            for (h = Domain.Length - 1; h >= 0; h--)
+            {
+                chrCharacter = char.Parse(domain.Substring(h, 1));
+                intCharacter = (int)chrCharacter;
+                a = (a << 6 & 268435455) + intCharacter + (intCharacter << 14);
+                c = a & 266338304;
+                a = c != 0 ? a ^ c >> 21 : a;
+            }
+
+            return a;
         }
 
-        public void ClearCustomVariable(int position)
+        private string GetCookieString()
         {
-            _sessionVariables.Clear(position);
+            string utma = String.Format("{0}.{1}.{2}.{3}.{4}.{5}",
+                                            DomainHash,
+                                            RandomNumber,
+                                            FirstSessionTimestamp, // timestamp of first visit
+                                            Timestamp, // timestamp of previous (most recent visit)
+                                            Timestamp, // timestamp of current visit
+                                            VisitCount); // total visit count
+
+            //referral informaiton
+            string utmz = String.Format("{0}.{1}.{2}.{3}.utmcsr={4}|utmccn={5}|utmcmd={6}",
+                                        DomainHash,
+                                        Timestamp,
+                                        "1",
+                                        "1",
+                                        _referralSource,
+                                        _campaign,
+                                        _medium);
+
+            string utmcc = Uri.EscapeDataString(String.Format("__utma={0};+__utmz={1};",
+                                                              utma,
+                                                              utmz
+                                                   ));
+
+            return (utmcc);
         }
+
+        #endregion
     }
 }
