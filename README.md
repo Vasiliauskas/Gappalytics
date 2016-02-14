@@ -1,5 +1,7 @@
-﻿Gappalytics is a library for google analytics based page tracking for any desktop or mobile application
+﻿Gappalytics [![Build status](https://ci.appveyor.com/api/projects/status/06nsa81vvf7c9ymh?svg=true)](https://ci.appveyor.com/project/Vasiliauskas/gappalytics)
 --------------
+##This is a library for google analytics based page tracking for any desktop or mobile application
+
 
 To use Gappalytics library, create an instance of AnalyticsSession every time you run your application.
 
@@ -18,6 +20,5 @@ var session = new AnalyticsSession("DOMAIN.COM", "UA-XXXXXXXX-X", rndNumber, vis
 var page = _Session.CreatePageViewRequest("/Root/MyPage", "MyPage");
 page.Send();
 ```
-Travis build
+Latest build
 --------------
-[![Build Status](https://travis-ci.org/Vasiliauskas/Gappalytics.svg?branch=master)](https://travis-ci.org/Vasiliauskas/Gappalytics)

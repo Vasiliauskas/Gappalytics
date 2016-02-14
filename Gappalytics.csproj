@@ -55,14 +55,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".travis.yml" />
+    <None Include="appveyor.yml" />
     <None Include="Gappalytics.nuspec" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
   <Target Name="CI" DependsOnTargets="Build" />
-
   <Target Name="Build">
     <MSBuild Projects="Gappalytics.sln" Properties="Configuration=Build;Platform=AnyCPU" />
   </Target>
