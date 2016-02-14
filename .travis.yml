@@ -1,2 +1,6 @@
 ﻿language: csharp
-solution: Gappalytics.sln
+
+solution: ./Gappalytics.sln
+
+script:
+- xbuild ./src/yoursolution.sln
