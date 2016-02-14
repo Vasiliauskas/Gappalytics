@@ -1,6 +1,6 @@
 ﻿Gappalytics [![Build status](https://ci.appveyor.com/api/projects/status/06nsa81vvf7c9ymh?svg=true)](https://ci.appveyor.com/project/Vasiliauskas/gappalytics)
 --------------
-_This is a library for google analytics based page tracking for any desktop or mobile application
+_This is a library for google analytics based page tracking for any desktop or mobile application_
 
 
 To use Gappalytics library, create an instance of AnalyticsSession every time you run your application.
