@@ -3,7 +3,7 @@
   <metadata>
     <id>Gappalytics</id>
     <title>Gappalytics</title>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <authors>Vidas Vasiliauskas</authors>
     <description>Gappalytics is a library for google analytics based page tracking for any desktop or mobile application</description>
     <language>en-US</language>
