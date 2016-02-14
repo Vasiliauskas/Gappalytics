@@ -11,7 +11,7 @@ platform:
   - Any CPU
 
 configuration:
- - Build
+  - Build
 
 build:
   project: Gappalytics.sln
@@ -19,7 +19,10 @@ build:
 test: off
 
 after_build:
- - ps: .\nuget\pack.ps1
+  - ps: .\nuget\pack.ps1
+
+artifacts:
+  - path: '**\*.nupkg'
 
 deploy:
   provider: NuGet
