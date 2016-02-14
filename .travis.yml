@@ -3,4 +3,4 @@
 solution: ./Gappalytics.sln
 
 script:
-- xbuild ./src/yoursolution.sln
+- xbuild ./src/Gappalytics.sln
