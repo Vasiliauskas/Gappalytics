@@ -19,6 +19,6 @@ Usage:
 var session = new AnalyticsSession("DOMAIN.COM", "UA-XXXXXXXX-X");* // non persistent
 var session = new AnalyticsSession("DOMAIN.COM", "UA-XXXXXXXX-X", rndNumber, visitCount, firstVisitTimestamp);* // persistent
 
-var page = _Session.CreatePageViewRequest("/Root/MyPage", "MyPage");
+var page = session.CreatePageViewRequest("/Root/MyPage", "MyPage");
 page.Send();
 ```
