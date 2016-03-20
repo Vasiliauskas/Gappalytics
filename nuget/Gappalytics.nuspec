@@ -10,10 +10,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>Google analytics api for apps</tags>
     <frameworkAssemblies>
-      <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net45-client, net45" />
+      <frameworkAssembly assemblyName="System.Net.Http" targetFramework="net40, net40" />
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\bin\Build\Gappalytics.dll" target="lib\net45" />
+    <file src="..\bin\Build\Gappalytics.dll" target="lib\net40" />
   </files>
 </package>
