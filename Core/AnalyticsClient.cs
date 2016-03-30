@@ -21,7 +21,7 @@
         /// <param name="domain"></param>
         /// <param name="trackingCode"></param>
         public AnalyticsClient(string domain, string trackingCode)
-            : this(domain, trackingCode, new Random(DateTime.Now.Millisecond).Next(1000000000), 0, null)
+            : this(domain, trackingCode, new Random(DateTime.Now.Millisecond).Next(1000000000), 1, null)
         {
         }
 
@@ -75,7 +75,14 @@
 
             ThreadPool.QueueUserWorkItem(state =>
             {
-                client.DownloadDataAsync(new Uri("__utm.gif", UriKind.Relative));
+                try
+                {
+                    client.DownloadData(new Uri("__utm.gif", UriKind.Relative));
+                }
+                catch(Exception ex)
+                {
+
+                }
             });
         }
 
