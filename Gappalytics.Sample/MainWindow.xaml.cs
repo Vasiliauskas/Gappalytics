@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace Gappalytics.Sample
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,6 +23,16 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AnalyticsHelper.Current.LogEvent("Just some event text", @"/SampleApp/TestButton1/");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AnalyticsHelper.Current.LogEvent("Just some other event text", @"/SampleApp/TestButton2/SubAction");
         }
     }
 }

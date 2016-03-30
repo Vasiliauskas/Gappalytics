@@ -1,0 +1,20 @@
+﻿<Window x:Class="Gappalytics.Sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gappalytics.Sample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Gappalytics sample application, push buttons to send events" HorizontalAlignment="Center"/>
+        <Button Grid.Row="1" Content="Send URL event 1" Click="Button_Click" Margin="5" Width="200"/>
+        <Button Grid.Row="2" Content="Send URL event 2" Click="Button_Click_1" Margin="5" Width="200"/>
+    </Grid>
+</Window>

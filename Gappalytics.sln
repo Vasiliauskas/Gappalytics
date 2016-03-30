@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25029.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gappalytics", "Gappalytics.csproj", "{96558322-66F6-4B07-B766-A26BB3CE3EA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gappalytics.Sample", "..\Gappalytics.Sample\Gappalytics.Sample.csproj", "{DA8408EF-D3B0-4FFB-B64A-E451BA91EAF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gappalytics.Sample", "Gappalytics.Sample\Gappalytics.Sample.csproj", "{DA8408EF-D3B0-4FFB-B64A-E451BA91EAF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
