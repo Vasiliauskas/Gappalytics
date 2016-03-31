@@ -40,7 +40,7 @@ namespace Gappalytics.Sample
         }
 
 
-        public void LogEvent(string eventName, string url)
+        public void LogEvent(string url, string eventName)
         {
             if (string.IsNullOrEmpty(eventName) || string.IsNullOrEmpty(url))
                 throw new InvalidOperationException("Parameters cannot contain empty values");
