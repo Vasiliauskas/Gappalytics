@@ -49,7 +49,7 @@ namespace Gappalytics.Sample
                 var request = _analyticsSession.CreatePageViewRequest(url, eventName);
                 request.Send();
             }
-            catch (Exception ex)
+            catch
             {
                 ex.ToString();
                 // Keep silent exceptions for robust scenarios
