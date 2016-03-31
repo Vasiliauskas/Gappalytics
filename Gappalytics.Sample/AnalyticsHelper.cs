@@ -51,7 +51,6 @@ namespace Gappalytics.Sample
             }
             catch
             {
-                ex.ToString();
                 // Keep silent exceptions for robust scenarios
             }
         }
