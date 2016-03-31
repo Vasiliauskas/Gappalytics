@@ -27,12 +27,12 @@ namespace Gappalytics.Sample
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AnalyticsHelper.Current.LogEvent("Just some event text", @"/SampleApp/TestButton1/");
+            AnalyticsHelper.Current.LogEvent("/SampleApp/TestButton1/", "Just some event text");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AnalyticsHelper.Current.LogEvent("Just some other event text", @"/SampleApp/TestButton2/SubAction");
+            AnalyticsHelper.Current.LogEvent("/SampleApp/TestButton2/SubAction", "Just some other event text");
         }
     }
 }
