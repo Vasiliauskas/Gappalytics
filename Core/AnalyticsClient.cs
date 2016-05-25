@@ -95,8 +95,8 @@
 
             var variables = _sessionVariables.MergeWith(pageVariables);
 
-            if (variables.Any())
-                client.QueryString["utme"] += variables.ToUtme();
+            //if (variables.Any())
+            //    client.QueryString["utme"] += variables.ToUtme();
 
             ThreadPool.QueueUserWorkItem(state =>
             {
