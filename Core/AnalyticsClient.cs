@@ -66,41 +66,43 @@
 
         public void SubmitPageView(string page, string title, VariableBucket pageVariables)
         {
-            var client = CreateBrowser(page, title);
-
-            var variables = _sessionVariables.MergeWith(pageVariables);
-
-            if (variables.Any())
-                client.QueryString["utme"] = variables.ToUtme();
-
             ThreadPool.QueueUserWorkItem(state =>
             {
-                try
+                using (var client = CreateBrowser(page, title))
                 {
-                    client.DownloadData(new Uri("__utm.gif", UriKind.Relative));
-                }
-                catch(Exception ex)
-                {
+                    var variables = _sessionVariables.MergeWith(pageVariables);
 
+                    if (variables.Any())
+                        client.QueryString["utme"] = variables.ToUtme();
+
+                    try
+                    {
+                        client.DownloadData(new Uri("__utm.gif", UriKind.Relative));
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
             });
         }
 
         public void SubmitEvent(string page, string title, string category, string action, string label, string value, VariableBucket pageVariables)
         {
-            var client = CreateBrowser(page, title);
-
-            client.QueryString["utmt"] = "event";
-            client.QueryString["utme"] = FormatUtme(category, action, label, value);
-
-            var variables = _sessionVariables.MergeWith(pageVariables);
-
-            //if (variables.Any())
-            //    client.QueryString["utme"] += variables.ToUtme();
-
             ThreadPool.QueueUserWorkItem(state =>
             {
-                client.DownloadDataAsync(new Uri("__utm.gif", UriKind.Relative));
+                using (var client = CreateBrowser(page, title))
+                {
+                    client.QueryString["utmt"] = "event";
+                    client.QueryString["utme"] = FormatUtme(category, action, label, value);
+
+                    //var variables = _sessionVariables.MergeWith(pageVariables);
+
+                    //if (variables.Any())
+                    //    client.QueryString["utme"] += variables.ToUtme();
+
+                    client.DownloadDataAsync(new Uri("__utm.gif", UriKind.Relative));
+                }
             });
         }
 
