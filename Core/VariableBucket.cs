@@ -21,7 +21,7 @@
         public void Set(int position, string key, string value)
         {
             if (position < 1 || position > 5)
-                throw new ArgumentOutOfRangeException("Index out of range. Use 1-5 indexes");
+                throw new ArgumentOutOfRangeException("Position", "Index out of range. Use 1-5 indexes");
 
             _variables[position - 1] = new KeyValuePair<string, string>(key, value);
         }
