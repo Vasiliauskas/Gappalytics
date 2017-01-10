@@ -1,5 +1,3 @@
-﻿using System.Globalization;
-
 namespace Gappalytics.Core
 {
     using System;
@@ -7,6 +5,7 @@ namespace Gappalytics.Core
     using System.Reflection;
     using System.Text;
     using System.Threading;
+    using System.Globalization;
 
     internal class AnalyticsClient : IAnalyticsClient
     {
