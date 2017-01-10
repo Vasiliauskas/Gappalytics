@@ -1,14 +1,17 @@
-﻿namespace Gappalytics.Core
+namespace Gappalytics.Core
 {
     using System;
     using System.Net;
     using System.Reflection;
     using System.Text;
     using System.Threading;
+    using System.Globalization;
 
     internal class AnalyticsClient : IAnalyticsClient
     {
         private readonly VariableBucket _sessionVariables;
+        private readonly Random _randomNumber;
+        private readonly CultureInfo _cultureInfo;
 
         private string _referralSource = "(direct)";
         private string _medium = "(none)";
@@ -23,6 +26,7 @@
         public AnalyticsClient(string domain, string trackingCode)
             : this(domain, trackingCode, new Random(DateTime.Now.Millisecond).Next(1000000000), 1, null)
         {
+            
         }
 
         /// <summary>
@@ -32,9 +36,12 @@
         /// <param name="trackingCode"></param>
         /// <param name="randomNumber">Random number that was generated on first launch</param>
         /// <param name="recentVisitCount">Recent visit count, must be incremented before passing in</param>
-        /// <param name="firstVisitTimeStamp">Timestamp for first session</param>
+        /// <param name="firstVisitTimestamp">Timestamp for first session</param>
         public AnalyticsClient(string domain, string trackingCode, int randomNumber, int recentVisitCount, DateTime? firstVisitTimestamp)
         {
+            _randomNumber = new Random();
+            _cultureInfo = CultureInfo.CurrentUICulture;
+
             _sessionVariables = new VariableBucket();
             Timestamp = ConvertToUnixTimestamp(DateTime.Now).ToString();
             Domain = domain;
@@ -127,7 +134,6 @@
 
         private WebClient CreateBrowser(string page, string title)
         {
-            Random randomNumber = new Random();
             WebClient client = new WebClient();
             client.Headers.Add(HttpRequestHeader.UserAgent, GetDefaultUserAgent());
             client.BaseAddress = "http://www.google-analytics.com/";
@@ -137,11 +143,11 @@
             client.QueryString["utmsr"] = "1280x800";
             client.QueryString["utmvp"] = "1280x800";
             client.QueryString["utmsc"] = "24-bit";
-            client.QueryString["utmul"] = "en-us";
+            client.QueryString["utmul"] = _cultureInfo.Name.ToLower();
             client.QueryString["utmdt"] = title;
-            client.QueryString["utmhid"] = randomNumber.Next(1000000000).ToString();
+            client.QueryString["utmhid"] = _randomNumber.Next(1000000000).ToString();
             client.QueryString["utmac"] = TrackingCode;
-            client.QueryString["utmn"] = randomNumber.Next(1000000000).ToString();
+            client.QueryString["utmn"] = _randomNumber.Next(1000000000).ToString();
             client.QueryString["utmr"] = "-";
             client.QueryString["utmp"] = page;
             client.QueryString["utmwv"] = "5.3.5";
